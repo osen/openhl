@@ -3,14 +3,12 @@ set -e
 ROOTDIR="$(pwd)"
 WORKDIR="$ROOTDIR/work"
 DISTDIR="$ROOTDIR/dist"
+SRCDIR="$ROOTDIR/src"
 PREFIX="$ROOTDIR/prefix"
 
 build_engine()
 {
-  cd "$WORKDIR"
-  rm -rf engine
-  git clone --recurse-submodules https://github.com/FWGS/xash3d-fwgs.git engine
-  cd engine
+  cd "$SRCDIR/engine"
   #python3 waf configure -T release --64bits --single-binary --prefix="$PREFIX"
   python3 waf configure -T release --64bits --prefix="$PREFIX"
   python3 waf build
@@ -40,13 +38,12 @@ build_hlsdk()
 
 build_hlextract()
 {
-  cd "$WORKDIR"
-  rm -rf hlextract
+  cd "$SRCDIR/hlextract"
 
-  cmake -B hlextract "$ROOTDIR/src/hlextract" \
+  cmake -B build \
     -DCMAKE_BUILD_TYPE=Release
 
-  cmake --build hlextract
+  cmake --build build
 }
 
 prepare_system()
@@ -59,14 +56,9 @@ prepare_system()
 
 extract_valve()
 {
-  cd "$WORKDIR"
-  rm -rf extras
-  git clone https://github.com/FWGS/xash-extras.git extras
-
-  rm -rf "$PREFIX/share/xash3d/valve"
   cd "$PREFIX/share/xash3d"
-  "$WORKDIR/hlextract/hlextract" -p "$DISTDIR/half-life.gcf" -e valve -d .
-  cp -r "$WORKDIR/extras/"* "valve"
+  "$SRCDIR/hlextract/build/hlextract" -p "$DISTDIR/half-life.gcf" -e valve -d .
+  cp -r "$SRCDIR/overlays/valve/"* "valve"
 }
 
 clean()
@@ -75,11 +67,11 @@ clean()
   rm -rf "$WORKDIR"
 }
 
-clean
-mkdir -p "$WORKDIR"
-prepare_system
+#clean
+#mkdir -p "$WORKDIR"
+#prepare_system
 build_hlextract
 extract_valve
-build_engine
-build_hlsdk
+#build_engine
+#build_hlsdk
 
