@@ -61,12 +61,13 @@ prepare_system()
 {
   rm -rf "$PREFIX"
   cp -r "$ROOTDIR/system" "$PREFIX"
-  mkdir -p "$PREFIX/share/xash3d"
   chmod +x "$PREFIX/bin/hl"
+  chmod +x "$PREFIX/bin/opfor"
 }
 
 extract_valve()
 {
+  mkdir -p "$PREFIX/share/xash3d"
   cd "$PREFIX/share/xash3d"
   "$SRCDIR/hlextract/build/hlextract" -p "$DISTDIR/half-life.gcf" -e valve -d .
   #"$SRCDIR/hlextract/build/hlextract" -p "$DISTDIR/opposing force.gcf" -e gearbox -d .
@@ -87,5 +88,5 @@ build_hlextract
 extract_valve
 build_engine
 build_hlsdk
-#build_opforsdk
+build_opforsdk
 
