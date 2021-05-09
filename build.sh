@@ -65,11 +65,11 @@ clean()
   rm -rf "$WORKDIR"
 }
 
-#clean
-#mkdir -p "$WORKDIR"
-#prepare_system
+clean
+mkdir -p "$WORKDIR"
+prepare_system
 build_hlextract
 extract_valve
-#build_engine
-#build_hlsdk
+build_engine
+build_hlsdk
 
