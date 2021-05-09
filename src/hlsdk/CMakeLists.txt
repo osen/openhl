@@ -65,10 +65,6 @@ if(64BIT AND CMAKE_SIZEOF_VOID_P EQUAL 4)
 	message(FATAL_ERROR "You enabled XASH_64BIT, but compiler can't create 64 bit code!")
 endif()
 
-# Xash3D FWGS Library Naming Scheme compliance
-# see documentation: https://github.com/FWGS/xash3d-fwgs/blob/master/Documentation/library-naming.md
-include(LibraryNaming)
-
 if(64BIT)
 	message(STATUS "Building for 64 Bit")
 else()

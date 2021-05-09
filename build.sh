@@ -20,9 +20,6 @@ build_hlsdk()
 {
   cd "$SRCDIR/hlsdk"
 
-  # Remove fragile naming system (*_amd64)
-  echo "" > cmake/LibraryNaming.cmake
-
   cmake -B build \
     -DCMAKE_BUILD_TYPE=Release \
     -D64BIT=ON \
@@ -33,6 +30,22 @@ build_hlsdk()
   cmake --build build
   cmake --build build --target install
 }
+
+build_opforsdk()
+{
+  cd "$SRCDIR/opfor-sdk"
+
+  cmake -B build \
+    -DCMAKE_BUILD_TYPE=Release \
+    -D64BIT=ON \
+    -DSERVER_INSTALL_DIR=gearbox \
+    -DCLIENT_INSTALL_DIR=gearbox \
+    -DGAMEDIR="$PREFIX/lib/xash3d"
+
+  cmake --build build
+  cmake --build build --target install
+}
+
 
 build_hlextract()
 {
@@ -56,6 +69,7 @@ extract_valve()
 {
   cd "$PREFIX/share/xash3d"
   "$SRCDIR/hlextract/build/hlextract" -p "$DISTDIR/half-life.gcf" -e valve -d .
+  #"$SRCDIR/hlextract/build/hlextract" -p "$DISTDIR/opposing force.gcf" -e gearbox -d .
   cp -r "$SRCDIR/overlays/valve/"* "valve"
 }
 
@@ -65,6 +79,7 @@ clean()
   rm -rf "$WORKDIR"
 }
 
+
 clean
 mkdir -p "$WORKDIR"
 prepare_system
@@ -72,4 +87,5 @@ build_hlextract
 extract_valve
 build_engine
 build_hlsdk
+#build_opforsdk
 
