@@ -9,6 +9,7 @@ PREFIX="$ROOTDIR/prefix"
 build_engine()
 {
   cd "$SRCDIR/engine"
+
   #python3 waf configure -T release --64bits --single-binary --prefix="$PREFIX"
   python3 waf configure -T release --64bits --prefix="$PREFIX"
   python3 waf build
@@ -17,10 +18,7 @@ build_engine()
 
 build_hlsdk()
 {
-  cd "$WORKDIR"
-  rm -rf hlsdk
-  git clone https://github.com/FWGS/hlsdk-xash3d.git hlsdk
-  cd hlsdk
+  cd "$SRCDIR/hlsdk"
 
   # Remove fragile naming system (*_amd64)
   echo "" > cmake/LibraryNaming.cmake
