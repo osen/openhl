@@ -34,8 +34,10 @@ be found in the "dist" folder (once LFS fetch is performed).
 Compilation / Usage
 -------------------
 
-The Half-Life game data must first be fetched. After cloning the
-repository you can fetch this large file (after installing git-lfs):
+The Half-Life game data must first be fetched. If you already had
+git-lfs installed when you cloned the project, this would have
+happened automatically. If you installed it after then you must run
+the following command to manually fetch it.
 
   $ git lfs pull
 

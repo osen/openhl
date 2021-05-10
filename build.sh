@@ -6,7 +6,7 @@ SRCDIR="$ROOTDIR/src"
 PREFIX="$ROOTDIR/prefix"
 
 PYTHON=python3
-MD5=/bin/md5
+MD5="/bin/md5 -q"
 
 build_engine()
 {
@@ -72,14 +72,14 @@ prepare_system()
   chmod +x "$PREFIX/bin/opfor"
 }
 
-checksum()
+do_checksum()
 {
-  PATH="$1"
+  FILENAME="$1"
   MATCH="$2"
 
-  echo "Checksum: $PATH"
+  echo "Checksum: $FILENAME"
 
-  CS="$("$MD5" -q "$1")"
+  CS="$($MD5 "$1")"
 
   if [ "$CS" != "$MATCH" ]; then
     echo "Error: Checksum didn't match"
@@ -110,7 +110,7 @@ clean()
 
 #clean
 
-checksum "$DISTDIR/steaminstall_halflife.exe" "b2db14b71fa98695a30de98792bfd51a"
+do_checksum "$DISTDIR/steaminstall_halflife.exe" "b2db14b71fa98695a30de98792bfd51a"
 
 prepare_system
 build_hlextract
