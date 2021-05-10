@@ -6,7 +6,6 @@ SRCDIR="$ROOTDIR/src"
 PREFIX="$ROOTDIR/prefix"
 
 PYTHON=python3
-MD5="/bin/md5 -q"
 
 build_engine()
 {
@@ -72,25 +71,16 @@ prepare_system()
   chmod +x "$PREFIX/bin/opfor"
 }
 
-do_checksum()
-{
-  FILENAME="$1"
-  MATCH="$2"
-
-  echo "Checksum: $FILENAME"
-
-  CS="$($MD5 "$1")"
-
-  if [ "$CS" != "$MATCH" ]; then
-    echo "Error: Checksum didn't match"
-    echo "Perhaps project was not checked out using LFS (Large File Support)"
-    exit 1
-  fi
-}
-
 extract_valve()
 {
   cd "$DISTDIR"
+  # Recombine after the
+  # split -b 100M steaminstall_halflife.exe steaminstall_halflife.exe.
+  echo "Combining steaminstall_halflife.exe"
+  cat steaminstall_halflife.exe.aa > steaminstall_halflife.exe
+  cat steaminstall_halflife.exe.ab >> steaminstall_halflife.exe
+  cat steaminstall_halflife.exe.ac >> steaminstall_halflife.exe
+
   echo "Extracting public Half-Life installer"
   mono "$SRCDIR/wiseunpacker/WiseUnpacker.exe" steaminstall_halflife.exe
   mv steaminstall_halflife/MAINDIR\\SteamApps\\half-life.gcf half-life.gcf
@@ -109,8 +99,6 @@ clean()
 }
 
 #clean
-
-do_checksum "$DISTDIR/steaminstall_halflife.exe" "b2db14b71fa98695a30de98792bfd51a"
 
 prepare_system
 build_hlextract

@@ -28,18 +28,11 @@ distributable files are as follows:
   steaminstall_full.exe     - Provides Half-Life and Opposing Force
 
 Only the former is provided by this project to save space. It can
-be found in the "dist" folder (once LFS fetch is performed).
+be found in the "dist" folder (split up into 100MB chunks to fit
+in GitHub's restrictions).
 
 Compilation / Usage
 -------------------
-The Half-Life game data must first be fetched. If you already had
-git-lfs installed when you cloned the project, this would have
-happened automatically. If you installed it after then you must run
-the following command to manually fetch it.
-
-  $ git lfs install
-  $ git lfs pull
-
 The entire system can be compiled by changing to the project directory
 and running:
 
@@ -76,7 +69,6 @@ CMake   - Build system
 SDL2    - Main engine uses it as the windowing system
 Python  - Waf build system used by some upstream modules.
 Mono    - Extracts the game data (win32 self-extracting executable).
-git-lfs - To store the large installers on GitHub.
 
 Acknowledgements
 ----------------
