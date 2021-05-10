@@ -9,6 +9,8 @@ namespace Test
         {
             var unpacker = new WiseUnpacker.WiseUnpacker();
 
+            Console.WriteLine("Extracting Wise installer");
+
             string input = Path.GetFullPath(args[0]);
             string outdir = Path.Combine(Path.GetDirectoryName(input), Path.GetFileNameWithoutExtension(input));
             if (args.Length > 1)
@@ -19,7 +21,7 @@ namespace Test
             else
                 Console.WriteLine($"Failed to extract {input}!");
 
-            Console.ReadKey();
+            Console.WriteLine("Complete");
         }
     }
 }

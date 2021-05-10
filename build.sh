@@ -73,6 +73,12 @@ prepare_system()
 
 extract_valve()
 {
+  cd "$DISTDIR"
+  echo "Extracting public Half-Life installer"
+  mono "$SRCDIR/wiseunpacker/WiseUnpacker.exe" steaminstall_halflife.exe
+  mv steaminstall_halflife/MAINDIR\\SteamApps\\half-life.gcf half-life.gcf
+  rm -rf steaminstall_halflife
+
   mkdir -p "$PREFIX/share/xash3d"
   cd "$PREFIX/share/xash3d"
   "$SRCDIR/hlextract/build/hlextract" -p "$DISTDIR/half-life.gcf" -e valve -d .
