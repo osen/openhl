@@ -1,6 +1,5 @@
 Open Half-Life
 ==============
-
 This project is an attempt at the digital preservation of Half-Life.
 The focus is not on features but instead to create a maintainable
 codebase which can be easily ported to future POSIX platforms.
@@ -33,7 +32,6 @@ be found in the "dist" folder (once LFS fetch is performed).
 
 Compilation / Usage
 -------------------
-
 The Half-Life game data must first be fetched. If you already had
 git-lfs installed when you cloned the project, this would have
 happened automatically. If you installed it after then you must run
@@ -92,4 +90,6 @@ extract the Half-Life game data.
 Ryan Freeman [slipgate.org] - Providing the initial OpenBSD port.
 Whilst this project is a fork with a growing number of differences,
 this port was still valuable to work out how it was built.
+
+Valve - Probably. But I am still bitter about the whole Steam thing.
 
