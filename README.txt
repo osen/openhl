@@ -37,6 +37,7 @@ git-lfs installed when you cloned the project, this would have
 happened automatically. If you installed it after then you must run
 the following command to manually fetch it.
 
+  $ git lfs install
   $ git lfs pull
 
 The entire system can be compiled by changing to the project directory
