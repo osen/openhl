@@ -1,19 +1,20 @@
 set -e
 
 ROOTDIR="$(pwd)"
-WORKDIR="$ROOTDIR/work"
 DISTDIR="$ROOTDIR/dist"
 SRCDIR="$ROOTDIR/src"
 PREFIX="$ROOTDIR/prefix"
+
+PYTHON=python3
 
 build_engine()
 {
   cd "$SRCDIR/engine"
 
-  #python3 waf configure -T release --64bits --single-binary --prefix="$PREFIX"
-  python3 waf configure -T release --64bits --prefix="$PREFIX"
-  python3 waf build
-  python3 waf install
+  #$PYTHON waf configure -T release --64bits --single-binary --prefix="$PREFIX"
+  $PYTHON waf configure -T release --64bits --prefix="$PREFIX"
+  $PYTHON waf build
+  $PYTHON waf install
 }
 
 build_hlsdk()
@@ -57,6 +58,12 @@ build_hlextract()
   cmake --build build
 }
 
+build_wiseunpacker()
+{
+  cd "$SRCDIR/wiseunpacker"
+  make
+}
+
 prepare_system()
 {
   rm -rf "$PREFIX"
@@ -77,14 +84,12 @@ extract_valve()
 clean()
 {
   rm -rf "$PREFIX"
-  rm -rf "$WORKDIR"
 }
 
-
 clean
-mkdir -p "$WORKDIR"
 prepare_system
 build_hlextract
+build_wiseunpacker
 extract_valve
 build_engine
 build_hlsdk
