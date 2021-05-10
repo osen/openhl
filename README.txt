@@ -25,13 +25,19 @@ Developer Wiki). There has been no cracking involved. These publicly
 distributable files are as follows:
 
   steaminstall_halflife.exe - Provides Half-Life
+  steaminstall_opfor.exe    - Provides Opposing Force
   steaminstall_full.exe     - Provides Half-Life and Opposing Force
 
 Only the former is provided by this project to save space. It can
-be found in the "dist" folder.
+be found in the "dist" folder (once LFS fetch is performed).
 
 Compilation / Usage
 -------------------
+
+The Half-Life game data must first be fetched. After cloning the
+repository you can fetch this large file (after installing git-lfs):
+
+  $ git lfs pull
 
 The entire system can be compiled by changing to the project directory
 and running:
@@ -64,8 +70,18 @@ Bugs
 
 Dependencies
 ------------
-CMake  - Build system
-SDL2   - Main engine uses it as the windowing system
-Python - Waf build system used by some upstream modules.
-Mono   - Extracts the game data (win32 self-extracting executable).
+CMake   - Build system
+SDL2    - Main engine uses it as the windowing system
+Python  - Waf build system used by some upstream modules.
+Mono    - Extracts the game data (win32 self-extracting executable).
+git-lfs - To store the large installers on GitHub.
+
+Acknowledgements
+----------------
+Flying with Gauss [https://xash.su/] - An open-source re-implementation
+of the Half-Life engine. An outstanding technical feat.
+
+Ryan Freeman [slipgate.org] - Providing the initial OpenBSD port.
+Whilst this project is a fork with a growing number of differences,
+this port was still valuable to work out how it was built.
 
