@@ -47,7 +47,6 @@ build_opforsdk()
   cmake --build build --target install
 }
 
-
 build_hlextract()
 {
   cd "$SRCDIR/hlextract"
@@ -86,7 +85,8 @@ clean()
   rm -rf "$PREFIX"
 }
 
-clean
+#clean
+
 prepare_system
 build_hlextract
 build_wiseunpacker

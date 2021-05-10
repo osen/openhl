@@ -33,14 +33,18 @@ be found in the "dist" folder.
 Compilation / Usage
 -------------------
 
-The entire system can be compiled by extracting the project and
-running:
+The entire system can be compiled by changing to the project directory
+and running:
 
   $ sh build.sh
 
 Once this has finished the game can then be run via:
 
   $ prefix/bin/hl
+
+That "prefix" folder can be renamed or moved to any location you
+like. Effort has been made to ensure that there are no hard-coded
+paths. This should ease packaging.
 
 By default, both the main Half-Life game and Opposing Force is
 compiled. However only the Half-Life data files are provided to
@@ -61,10 +65,7 @@ Bugs
 Dependencies
 ------------
 CMake  - Build system
-
 SDL2   - Main engine uses it as the windowing system
-
 Python - Waf build system used by some upstream modules.
-
 Mono   - Extracts the game data (win32 self-extracting executable).
 
