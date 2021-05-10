@@ -1,6 +1,5 @@
 Open Half-Life
 ==============
-
 This project is an attempt at the digital preservation of Half-Life.
 The focus is not on features but instead to create a maintainable
 codebase which can be easily ported to future POSIX platforms.
@@ -25,13 +24,21 @@ Developer Wiki). There has been no cracking involved. These publicly
 distributable files are as follows:
 
   steaminstall_halflife.exe - Provides Half-Life
+  steaminstall_opfor.exe    - Provides Opposing Force
   steaminstall_full.exe     - Provides Half-Life and Opposing Force
 
 Only the former is provided by this project to save space. It can
-be found in the "dist" folder.
+be found in the "dist" folder (once LFS fetch is performed).
 
 Compilation / Usage
 -------------------
+The Half-Life game data must first be fetched. If you already had
+git-lfs installed when you cloned the project, this would have
+happened automatically. If you installed it after then you must run
+the following command to manually fetch it.
+
+  $ git lfs install
+  $ git lfs pull
 
 The entire system can be compiled by changing to the project directory
 and running:
@@ -57,15 +64,33 @@ Bugs
   the code. Work will be done to fix this.
 
 - The steaminstall setup extractor is currently CSharp. So it drags in the
-  whole of Mono. This is a pain so I plan to rewrite it.
+  whole of Mono. This is a pain so I plan to rewrite it. The code is technical
+  but actually very clean and readable so this shouldn't be too bad.
 
 - Upstream use a Python build system for C++ called waf for a few
   of the modules. I plan to rewrite this to keep with CMake.
 
 Dependencies
 ------------
-CMake  - Build system
-SDL2   - Main engine uses it as the windowing system
-Python - Waf build system used by some upstream modules.
-Mono   - Extracts the game data (win32 self-extracting executable).
+CMake   - Build system
+SDL2    - Main engine uses it as the windowing system
+Python  - Waf build system used by some upstream modules.
+Mono    - Extracts the game data (win32 self-extracting executable).
+git-lfs - To store the large installers on GitHub.
+
+Acknowledgements
+----------------
+Flying with Gauss [https://xash.su/] - An open-source re-implementation
+of the Half-Life engine. An outstanding technical feat.
+
+Matt Nadareski [https://github.com/mnadareski] - An open-source
+unpacker for self extracting win32 executables from Wise Solutions.
+A really cool project in its own right and also very handy to
+extract the Half-Life game data.
+
+Ryan Freeman [slipgate.org] - Providing the initial OpenBSD port.
+Whilst this project is a fork with a growing number of differences,
+this port was still valuable to work out how it was built.
+
+Valve - Probably. But I am still bitter about the whole Steam thing.
 

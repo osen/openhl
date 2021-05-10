@@ -6,6 +6,7 @@ SRCDIR="$ROOTDIR/src"
 PREFIX="$ROOTDIR/prefix"
 
 PYTHON=python3
+MD5="/bin/md5 -q"
 
 build_engine()
 {
@@ -71,6 +72,22 @@ prepare_system()
   chmod +x "$PREFIX/bin/opfor"
 }
 
+do_checksum()
+{
+  FILENAME="$1"
+  MATCH="$2"
+
+  echo "Checksum: $FILENAME"
+
+  CS="$($MD5 "$1")"
+
+  if [ "$CS" != "$MATCH" ]; then
+    echo "Error: Checksum didn't match"
+    echo "Perhaps project was not checked out using LFS (Large File Support)"
+    exit 1
+  fi
+}
+
 extract_valve()
 {
   cd "$DISTDIR"
@@ -92,6 +109,8 @@ clean()
 }
 
 #clean
+
+do_checksum "$DISTDIR/steaminstall_halflife.exe" "b2db14b71fa98695a30de98792bfd51a"
 
 prepare_system
 build_hlextract
