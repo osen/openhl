@@ -65,7 +65,8 @@ Bugs
   the code. Work will be done to fix this.
 
 - The steaminstall setup extractor is currently CSharp. So it drags in the
-  whole of Mono. This is a pain so I plan to rewrite it.
+  whole of Mono. This is a pain so I plan to rewrite it. The code is technical
+  but actually very clean and readable so this shouldn't be too bad.
 
 - Upstream use a Python build system for C++ called waf for a few
   of the modules. I plan to rewrite this to keep with CMake.
@@ -82,6 +83,11 @@ Acknowledgements
 ----------------
 Flying with Gauss [https://xash.su/] - An open-source re-implementation
 of the Half-Life engine. An outstanding technical feat.
+
+Matt Nadareski [https://github.com/mnadareski] - An open-source
+unpacker for self extracting win32 executables from Wise Solutions.
+A really cool project in its own right and also very handy to
+extract the Half-Life game data.
 
 Ryan Freeman [slipgate.org] - Providing the initial OpenBSD port.
 Whilst this project is a fork with a growing number of differences,
