@@ -3,7 +3,7 @@ set -e
 ROOTDIR="$(pwd)"
 DISTDIR="$ROOTDIR/dist"
 SRCDIR="$ROOTDIR/src"
-PREFIX="$ROOTDIR/prefix"
+DESTDIR="$ROOTDIR/export"
 
 if [ -z "$PYTHON" ]; then
   PYTHON=python3
@@ -13,8 +13,8 @@ build_engine()
 {
   cd "$SRCDIR/engine"
 
-  #$PYTHON waf configure -T release --64bits --single-binary --prefix="$PREFIX"
-  $PYTHON waf configure -T release --64bits --prefix="$PREFIX"
+  #$PYTHON waf configure -T release --64bits --single-binary --prefix="$DESTDIR"
+  $PYTHON waf configure -T release --64bits --prefix="$DESTDIR"
   $PYTHON waf build
   $PYTHON waf install
 }
@@ -28,7 +28,7 @@ build_hlsdk()
     -D64BIT=ON \
     -DSERVER_INSTALL_DIR=valve \
     -DCLIENT_INSTALL_DIR=valve \
-    -DGAMEDIR="$PREFIX/lib/xash3d"
+    -DGAMEDIR="$DESTDIR/lib/xash3d"
 
   cmake --build build
   cmake --build build --target install
@@ -43,7 +43,7 @@ build_opforsdk()
     -D64BIT=ON \
     -DSERVER_INSTALL_DIR=gearbox \
     -DCLIENT_INSTALL_DIR=gearbox \
-    -DGAMEDIR="$PREFIX/lib/xash3d"
+    -DGAMEDIR="$DESTDIR/lib/xash3d"
 
   cmake --build build
   cmake --build build --target install
@@ -67,10 +67,10 @@ build_wiseunpacker()
 
 prepare_system()
 {
-  rm -rf "$PREFIX"
-  cp -r "$ROOTDIR/system" "$PREFIX"
-  chmod +x "$PREFIX/bin/hl"
-  chmod +x "$PREFIX/bin/opfor"
+  mkdir "$DESTDIR"
+  cp -r "$ROOTDIR/system/"* "$DESTDIR"
+  chmod +x "$DESTDIR/bin/hl"
+  chmod +x "$DESTDIR/bin/opfor"
 }
 
 extract_valve()
@@ -88,19 +88,12 @@ extract_valve()
   mv steaminstall_halflife/MAINDIR\\SteamApps\\half-life.gcf half-life.gcf
   rm -rf steaminstall_halflife
 
-  mkdir -p "$PREFIX/share/xash3d"
-  cd "$PREFIX/share/xash3d"
+  mkdir -p "$DESTDIR/share/xash3d"
+  cd "$DESTDIR/share/xash3d"
   "$SRCDIR/hlextract/build/hlextract" -p "$DISTDIR/half-life.gcf" -e valve -d .
   #"$SRCDIR/hlextract/build/hlextract" -p "$DISTDIR/opposing force.gcf" -e gearbox -d .
   cp -r "$SRCDIR/overlays/valve/"* "valve"
 }
-
-clean()
-{
-  rm -rf "$PREFIX"
-}
-
-#clean
 
 prepare_system
 build_hlextract
