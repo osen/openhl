@@ -40,9 +40,9 @@ and running:
 
 Once this has finished the game can then be run via:
 
-  $ prefix/bin/hl
+  $ export/bin/hl
 
-That "prefix" folder can be renamed or moved to any location you
+That "export" folder can be renamed or moved to any location you
 like. Effort has been made to ensure that there are no hard-coded
 paths. This should ease packaging.
 
@@ -53,15 +53,15 @@ steaminstall_full.exe package.
 
 Bugs
 ----
-- No background in the menu. The game data is a little out of sync with
-  the code. Work will be done to fix this.
-
 - The steaminstall setup extractor is currently CSharp. So it drags in the
   whole of Mono. This is a pain so I plan to rewrite it. The code is technical
   but actually very clean and readable so this shouldn't be too bad.
 
 - Upstream use a Python build system for C++ called waf for a few
   of the modules. I plan to rewrite this to keep with CMake.
+
+- Changing video options via the menu is flaky. Try via the config file
+  instead.
 
 Dependencies
 ------------
@@ -80,9 +80,9 @@ unpacker for self extracting win32 executables from Wise Solutions.
 A really cool project in its own right and also very handy to
 extract the Half-Life game data.
 
-Ryan Freeman [slipgate.org] - Providing the initial OpenBSD port.
+Ryan Freeman [https://slipgate.org] - Providing the initial OpenBSD port.
 Whilst this project is a fork with a growing number of differences,
 this port was still valuable to work out how it was built.
 
-Valve - Probably. But I am still bitter about the whole Steam thing.
+Valve - Probably. But I am still bitter about the whole Steam thing ;)
 
