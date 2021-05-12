@@ -5,7 +5,9 @@ DISTDIR="$ROOTDIR/dist"
 SRCDIR="$ROOTDIR/src"
 PREFIX="$ROOTDIR/prefix"
 
-PYTHON=python3
+if [ -z "$PYTHON" ]; then
+  PYTHON=python3
+fi
 
 build_engine()
 {
