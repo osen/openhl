@@ -198,6 +198,8 @@ For more information, please refer to <http://unlicense.org/>
 	#endif // __SOFTFP__
 #elif defined __mips__
 	#define XASH_MIPS 1
+#elif defined __powerpc64__
+	#define XASH_PPC64 1
 #elif defined __EMSCRIPTEN__
 	#define XASH_JS 1
 #elif defined __e2k__
