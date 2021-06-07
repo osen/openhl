@@ -140,6 +140,10 @@ const char *Q_buildarch( void )
 	archname = "mips";
 #elif XASH_MIPS && XASH_LITTLE_ENDIAN
 	archname = "mipsel";
+#elif XASH_PPC64 && XASH_BIG_ENDIAN
+	archname = "powerpc64";
+#elif XASH_PPC64 && XASH_LITTLE_ENDIAN
+	archname = "powerpc64le";
 #elif XASH_JS
 	archname = "javascript";
 #elif XASH_E2K
