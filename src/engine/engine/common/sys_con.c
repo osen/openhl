@@ -277,7 +277,7 @@ void GAME_EXPORT Con_DPrintf( const char *szFmt, ... )
 	static char	buffer[MAX_PRINT_MSG];
 	va_list		args;
 
-	if( host_developer.value < DEV_NORMAL )
+	if( host_developer.value < (float)DEV_NORMAL )
 		return;
 
 	va_start( args, szFmt );
@@ -301,7 +301,7 @@ void Con_Reportf( const char *szFmt, ... )
 	static char	buffer[MAX_PRINT_MSG];
 	va_list		args;
 
-	if( host_developer.value < DEV_EXTENDED )
+	if( host_developer.value < (float)DEV_EXTENDED )
 		return;
 
 	va_start( args, szFmt );

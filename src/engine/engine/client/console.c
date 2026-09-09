@@ -2186,7 +2186,7 @@ void Con_DrawConsole( void )
 		{
 			con.showlines = 0;
 
-			if( host_developer.value >= DEV_EXTENDED )
+			if( host_developer.value >= (float)DEV_EXTENDED )
 				Con_DrawNotify(); // draw notify lines
 		}
 	}

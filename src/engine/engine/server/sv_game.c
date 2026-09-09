@@ -2894,11 +2894,11 @@ static void GAME_EXPORT pfnAlertMessage( ALERT_TYPE type, char *szFmt, ... )
 		return;
 	}
 
-	if( host_developer.value <= DEV_NONE )
+	if( host_developer.value <= (float)DEV_NONE )
 		return;
 
 	// g-cont: some mods have wrong aiconsole messages that crash the engine
-	if( type == at_aiconsole && host_developer.value < DEV_EXTENDED )
+	if( type == at_aiconsole && host_developer.value < (float)DEV_EXTENDED )
 		return;
 
 	va_start( args, szFmt );

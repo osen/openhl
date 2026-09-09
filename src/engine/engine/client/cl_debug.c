@@ -235,7 +235,7 @@ void CL_WriteMessageHistory( void )
 
 	failcommand = &cls_message_debug.oldcmd[thecmd];
 	Con_Printf( "BAD:  %3i:%s\n", MSG_GetNumBytesRead( msg ) - 1, CL_MsgInfo( failcommand->command ));
-	if( host_developer.value >= DEV_EXTENDED )
+	if( host_developer.value >= (float)DEV_EXTENDED )
 		CL_WriteErrorMessage( MSG_GetNumBytesRead( msg ) - 1, msg );
 	cls_message_debug.parsing = false;
 }
