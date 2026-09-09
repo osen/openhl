@@ -1004,7 +1004,7 @@ int EXPORT Host_Main( int argc, char **argv, const char *progname, int bChangeGa
 	Host_InitCommon( argc, argv, progname, bChangeGame );
 
 	// init commands and vars
-	if( host_developer.value >= DEV_EXTENDED )
+	if( host_developer.value >= (float)DEV_EXTENDED )
 	{
 		Cmd_AddCommand ( "sys_error", Sys_Error_f, "just throw a fatal error to test shutdown procedures");
 		Cmd_AddCommand ( "host_error", Host_Error_f, "just throw a host error to test shutdown procedures");

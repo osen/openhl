@@ -229,7 +229,7 @@ void CL_SignonReply( void )
 	{
 	case 1:
 		CL_ServerCommand( true, "begin" );
-		if( host_developer.value >= DEV_EXTENDED )
+		if( host_developer.value >= (float)DEV_EXTENDED )
 			Mem_PrintStats();
 		break;
 	case 2:
