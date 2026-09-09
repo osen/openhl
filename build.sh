@@ -24,7 +24,7 @@ build_hlsdk()
   cd "$SRCDIR/hlsdk"
 
   cmake -B build \
-    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \ # fix for cmake 4 
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -DCMAKE_BUILD_TYPE=Release \
     -D64BIT=ON \
     -DSERVER_INSTALL_DIR=valve \
@@ -41,7 +41,7 @@ build_opforsdk()
 
   cmake -B build \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \ # fix for cmake 4 
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -D64BIT=ON \
     -DSERVER_INSTALL_DIR=gearbox \
     -DCLIENT_INSTALL_DIR=gearbox \
@@ -57,7 +57,7 @@ build_hlextract()
 
   cmake -B build \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 # fix for cmake 4 
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
   cmake --build build
 }
